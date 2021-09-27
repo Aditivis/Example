@@ -1,0 +1,251 @@
+package Pro;
+import java.util.Scanner;
+class emp
+{
+	int n;
+	int[] ts=new int[100]; 
+	int b;
+	Scanner sc=new Scanner(System.in);
+	int[] nba= {1,2,3,4,5};
+	String[] fn= {"Chocolate","Butter Scotch","Vanilla","Strawberry","Mango    "};
+	int[] fr= {50,50,50,50,50};
+    int[] nbb={1,2,3,4,5};
+	String[] tn= {"Choco chip","oreo  ","Caramel","Sprinkles","Hot Fudge"};
+	int tr[]= {30,30,30,30,30};
+	void order()
+	{
+	  int i,l;
+	   System.out.println("What would you like to order");
+	  for(i=0;i<5;i++)
+	  {
+		 System.out.println(nba[i]+" "+fn[i]+"\t"+fr[i]);
+	  }
+	 do{
+		 System.out.println("Enter the sn of the ice cream u want");
+		 int c=sc.nextInt();
+		 b=b+fr[c-1];
+		 System.out.println("Do you want a topping with this ice cream?\n if yes press 1 else press 0")	;
+		 int x=sc.nextInt();
+		 if(x==1)
+		 {
+		  for(i=0;i<5;i++)
+		  {
+			 System.out.println(nbb[i]+" "+tn[i]+"\t"+tr[i]);
+		  }
+		  System.out.println("Enter the sn of the topping u want");
+		  int j=sc.nextInt();
+		  b=b+tr[j-1];
+		 }
+		 else
+		 {
+			b=b+0; 
+		 }
+		 System.out.println("Do you want another ice cream?\nType 1 else 0");
+		 l=sc.nextInt();
+	  }while(l==1);
+	 System.out.println("The total amount is "+b);
+	  add(b);
+    }
+	void add(int b)
+	{
+		ts[n++]=b;
+	}
+	void ts()
+	{
+		if(n>0)
+	 {
+	    for(int i=0;i<n;i++)
+	   {
+		System.out.println("Serial num\tRate");
+		System.out.println((i+1)+"\t\t"+ts[i]);
+	   }
+	 }
+		else
+		{
+		  System.out.println("No sales today");	
+		}
+	}
+	void tot()
+	{
+		int totalp=0;
+		for(int i=0;i<n;i++)
+			totalp=totalp+ts[i];
+		if(totalp==0)
+		{
+			System.out.println("No sales today");
+		}
+		else
+		{
+		System.out.println("Total sales is Rs "+totalp);
+		}
+	}
+}
+class admin
+{
+	Scanner s=new Scanner(System.in);
+	int topa=-1;
+	int topb=-1;
+	int topc=-1;
+	int topd=-1;
+	String[] name=new String[100];
+	String[] num =new String[100];
+	String[] mail=new String[100];
+	String[] dob=new String[100];
+	void register()
+	{
+		System.out.println("Enter your email id:");
+	    String em=s.next();
+	    pusha(em);
+	    System.out.println("Enter your number:");
+        String nm=s.next();
+        pushb(nm);
+        System.out.println("Enter your name:");
+        String na=s.next();
+        pushc(na);
+        System.out.println("Enter your DOB in dd/mm/yyyy format");
+        String db=s.next();
+        pushd(db);
+        System.out.println("You have registered successfully!!!\nYou will get further notification of any upcoming offers and you will also get discounts on you birthday!!");
+       }
+	void pusha(String mailid)
+	{
+        mail[++topa]=mailid;
+	}
+	void pushb(String numb)
+	{
+        num[++topb]=numb;
+	}
+	void pushc(String nam )
+	{
+        name[++topc]=nam;
+	}
+	void pushd(String dobs)
+	{
+        dob[++topd]=dobs;
+	}
+	void display()
+	{
+		if(topa==-1)
+		{
+			System.out.println("*****No items to display*****");
+		}
+		else
+		{ 
+			System.out.println("Name\tNumber\t\tEmail\t\tDate of birth");
+			for(int i=topa;i>=0;i--)
+			{
+				System.out.println(name[i]+"\t"+num[i]+"\t"+mail[i]+"\t"+dob[i]);
+			}
+		}	
+	}
+}
+class cust
+{   
+	Scanner s=new Scanner(System.in);
+	void display()
+	{
+	   System.out.println("*************MENU***************\nFlavours\t  1\nToppings\t  2");
+	   int h=s.nextInt();
+	   switch(h)
+	   {
+	      case 1:System.out.println("Flavour\t\tCost\n1.Chocolate\t50\n2.Butter Scotch\t50\n3.Vanilla\t50\n4.Strawberry\t50\n5.Mango\t\t50");
+	             break;
+	      case 2:System.out.println("Toppings\t\tCost\n1.Choco chip\t\t30\n2.Oreo\t\t\t30\n3.Caramel\t\t30\n4.Sprinkles\t\t30\n5.Hot Fudge\t\t30");
+                 break;     
+	      default:System.out.println("Wrong option"); 
+	    }
+	       
+	 }
+}
+public class Snowshow 
+{
+    public static void main(String[] args)
+	{
+    	emp z=new emp();
+    	cust v=new cust();
+    	admin m=new admin();
+    	Boolean exit=false;
+		try (Scanner sc = new Scanner(System.in)) 
+		{
+			System.out.println("************************************");
+			System.out.println("**            SNOW SHOW           **");
+			System.out.println("************************************");
+			do 
+			{
+			System.out.println("\nFor admin press    \t\t1\nIf you are an employee press    2\nIf you are a customer press     3\nTo exit press \t\t\t4");
+			int c=sc.nextInt();
+			switch(c)
+			{
+			case 1:System.out.println("Enter the password");
+			       int pass=sc.nextInt();
+			       if(pass==1234)
+			       {
+			    	   System.out.println("To check individual sales for the day press\t1\nTo check total sales press\t\t\t2\nTo check customer registration details press\t3");
+			    	   int g=sc.nextInt();
+			    	   switch(g)
+			    	   {
+			    	   case 1:z.ts();
+			    	          break;
+			    	   case 2:z.tot();
+			    	          break;
+			    	   case 3:m.display();
+			    	          break;
+			    	   default:System.out.println("Wrong option");
+			    	   }
+			       }
+			       else
+			       {
+			    	   System.out.println("Wrong password");
+			       }
+			       break;
+			case 2:System.out.println("Enter the password");
+		           int passcode=sc.nextInt();
+		           if(passcode==9876)
+		           {
+		        	   System.out.println("To check individual sales for the day press\t1\nTo check total sales press\t\t\t2\nFor billing\t\t\t\t\t3");
+		        	   int q=sc.nextInt();
+		        	   switch(q)
+		        	   {
+		        	   case 1:z.ts();
+		    	              break;
+		    	       case 2:z.tot();
+		    	              break;
+		    	       case 3:z.order();
+		    	              break;
+		    	       default:System.out.println("Wrong option");
+		        	   }
+		           }
+		           else
+		           {
+		        	   System.out.println("Wrong password");
+		           }
+		           break;
+			case 3:System.out.println("**If you are a new customer please register with us to get notifications about our offers**");
+				   System.out.println("For viewing menu press\t  1\nTo register with us press 2");
+			       int t=sc.nextInt();
+			       switch(t)
+			       {
+			       case 1:v.display();
+			              break;
+			       case 2:m.register();
+			    	      break;
+			       default:System.out.println("Wrong option");
+			       }
+			       break;
+			case 4:System.out.println("Thankyou for using our service:)");
+    	           exit=true; 
+                   break;
+            default:System.out.println("Wrong option");     
+			}
+			 System.out.println("");
+			 System.out.println("Do you wish to continue\nIf yes press 1 else press 0");
+		     int p=sc.nextInt();
+		     if(p==0)
+		     {
+		    	 System.out.println("Thankyou for using our service :)");
+		    	 exit=true;
+		     }
+		    }while(exit==false);
+	    }
+}
+}
